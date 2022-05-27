@@ -1,6 +1,11 @@
 const englishAlphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","1","2","3","4","5","6","7","8","9","0",".",",","?"];
 const morseAlphabet = [".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--..",".----","..---","...--","....--",".....","-....","--...","---..","----.","-----",".-.-.-","--..--","..--.."];
 
+const inputBox = document.querySelector("input")
+const outputBox = document.querySelector("output")
+const translateBtn = document.querySelector("button")
+const h1 = document.querySelector("h1")
+
 class Translator {
 
     constructor(splitCharacter, joinCharacter, inputAlphabet, outputAlphabet){
@@ -25,6 +30,7 @@ class Translator {
     }
 }
 
+
 const englishToMorseTranslator = new Translator ("", " ", englishAlphabet, morseAlphabet) 
 const morseToEnglishTranslator = new Translator (" ", "", morseAlphabet, englishAlphabet)
  
@@ -32,5 +38,8 @@ console.log(englishToMorseTranslator.translateWord("wxyz"))
 console.log(morseToEnglishTranslator.translateWord("--.. -.--"))
 
 
+translateBtn.addEventListener("click", () => {
+    h1.innerHTML = englishToMorseTranslator.translateWord()
+})
 
     
