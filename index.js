@@ -1,9 +1,10 @@
 const englishAlphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","1","2","3","4","5","6","7","8","9","0",".",",","?"];
 const morseAlphabet = [".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--..",".----","..---","...--","....--",".....","-....","--...","---..","----.","-----",".-.-.-","--..--","..--.."];
 
-const inputBox = document.querySelector("input")
-const outputBox = document.querySelector("output")
-const translateBtn = document.querySelector("button")
+const inputText = document.querySelector(".input-text")
+const outputText = document.querySelector(".output-text")
+const translateToEnglishBtn = document.querySelector(".english-btn")
+const translateToMorseBtn = document.querySelector(".morse-btn")
 const h1 = document.querySelector("h1")
 
 class Translator {
@@ -15,7 +16,7 @@ class Translator {
         this.outputAlphabet = outputAlphabet;
     }
 
-    // I need to split the word down to characeters 
+    // I need to split the word down to characters 
     //then with each character find it in the object and return the value of the key.
     // push that to the output
     // add a joining space
@@ -24,22 +25,19 @@ class Translator {
         const characters = inputWord.toUpperCase().split(this.splitCharacter);
         characters.map((character) => {
            let index = this.inputAlphabet.indexOf(character)
-           output += this.joinCharacter + this.outputAlphabet[index]
+           output += this.joinCharacter + this.outputAlphabet[index].toLowerCase()
         })
-        return output;
+        outputText.innerHTML = output;
     }
 }
 
-
 const englishToMorseTranslator = new Translator ("", " ", englishAlphabet, morseAlphabet) 
 const morseToEnglishTranslator = new Translator (" ", "", morseAlphabet, englishAlphabet)
- 
-console.log(englishToMorseTranslator.translateWord("wxyz"))
-console.log(morseToEnglishTranslator.translateWord("--.. -.--"))
 
+translateToMorseBtn.addEventListener("click",() => {
+    englishToMorseTranslator.translateWord(inputText.value)
+} )
 
-translateBtn.addEventListener("click", () => {
-    h1.innerHTML = englishToMorseTranslator.translateWord()
-})
-
-    
+translateToEnglishBtn.addEventListener("click", () => {
+    morseToEnglishTranslator.translateWord(inputText.value)
+}) 
