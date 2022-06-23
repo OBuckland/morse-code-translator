@@ -9,35 +9,40 @@ const h1 = document.querySelector("h1")
 
 class Translator {
 
-    constructor(splitCharacter, joinCharacter, inputAlphabet, outputAlphabet){
-        this.splitCharacter = splitCharacter; 
-        this.joinCharacter = joinCharacter;
+    constructor(characterSeparator, characterJoiner, inputAlphabet, outputAlphabet, wordSeparator, wordJoiner){
+        this.characterSeparator = characterSeparator; 
+        this.characterJoiner = characterJoiner;
         this.inputAlphabet = inputAlphabet;
         this.outputAlphabet = outputAlphabet;
+        this.wordSeparator = wordSeparator;
+        this.wordJoiner = wordJoiner;
     }
 
     // I need to split the word down to characters 
     //then with each character find it in the object and return the value of the key.
     // push that to the output
     // add a joining space
-    translateWord(inputWord) {
+    translateWord(inputText) {
         let output = "";
-        const characters = inputWord.toUpperCase().split(this.splitCharacter);
-        characters.map((character) => {
-           let index = this.inputAlphabet.indexOf(character)
-           output += this.joinCharacter + this.outputAlphabet[index].toLowerCase()
+        const wordsArr = inputText.toUpperCase().split(this.wordSeparator);
+        wordsArr.forEach((word) => {
+            const characters = word.toUpperCase().split(this.characterSeparator);
+            characters.forEach((character) => {
+               let index = this.inputAlphabet.indexOf(character)
+               output += this.characterJoiner + this.outputAlphabet[index].toLowerCase()
+            })
+            output += this.wordJoiner
         })
-        outputText.innerHTML = output;
-    }
+        return output 
+    }   
 }
 
-const englishToMorseTranslator = new Translator ("", " ", englishAlphabet, morseAlphabet) 
-const morseToEnglishTranslator = new Translator (" ", "", morseAlphabet, englishAlphabet)
+const englishToMorseTranslator = new Translator ("", " ", englishAlphabet, morseAlphabet, " ", "/")
+const morseToEnglishTranslator = new Translator (" ", "", morseAlphabet, englishAlphabet, "/", " ")
 
-translateToMorseBtn.addEventListener("click",() => {
-    englishToMorseTranslator.translateWord(inputText.value)
-} )
+const translateToMorse = () => outputText.innerHTML = englishToMorseTranslator.translateWord(inputText.value)
+const translateToEnglish =  () => outputText.innerHTML = morseToEnglishTranslator.translateWord(inputText.value)
 
-translateToEnglishBtn.addEventListener("click", () => {
-    morseToEnglishTranslator.translateWord(inputText.value)
-}) 
+translateToMorseBtn.addEventListener("click", (translateToMorse))
+
+translateToEnglishBtn.addEventListener("click", (translateToEnglish)) 
