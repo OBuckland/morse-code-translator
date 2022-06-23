@@ -1,0 +1,23 @@
+{
+  "name": "morse-code-translator",
+  "version": "1.0.0",
+  "description": "***",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OBuckland/morse-code-translator.git"
+  },
+  "author": "Olivia Buckland",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OBuckland/morse-code-translator/issues"
+  },
+  "homepage": "https://github.com/OBuckland/morse-code-translator#readme",
+  "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.18.2",
+    "jest": "^28.1.1"
+  }
+}
