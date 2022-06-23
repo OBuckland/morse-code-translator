@@ -4,7 +4,7 @@
 
 main {
   background-color: palevioletred;
-  padding: 10%;
+  padding: 7%;
   margin: 10%;
   border: solid green 5px;
   border-top-left-radius: 20px;
@@ -26,4 +26,10 @@ button {
 
 h1 {
   font-size: 20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.input-text{
+  width: 160px;
 }
