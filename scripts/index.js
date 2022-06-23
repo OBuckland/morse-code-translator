@@ -11,9 +11,8 @@ const translateToMorseBtn = document.querySelector(".morse-btn")
 const englishToMorseTranslator = new Translator ("", " ", englishAlphabet, morseAlphabet, " ", "/")
 const morseToEnglishTranslator = new Translator (" ", "", morseAlphabet, englishAlphabet, "/", " ")
 
-const translateToMorse = () => outputText.innerHTML = englishToMorseTranslator.translateWord(inputText.value)
-const translateToEnglish =  () => outputText.innerHTML = morseToEnglishTranslator.translateWord(inputText.value)
+const translateToMorse = () => outputText.innerHTML = englishToMorseTranslator.translate(inputText.value)
+const translateToEnglish =  () => outputText.innerHTML = morseToEnglishTranslator.translate(inputText.value)
 
 translateToMorseBtn.addEventListener("click", (translateToMorse))
-
 translateToEnglishBtn.addEventListener("click", (translateToEnglish)) 
